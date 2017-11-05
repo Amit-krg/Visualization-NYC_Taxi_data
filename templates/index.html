@@ -1,0 +1,353 @@
+<html>
+  <head>
+    <title>Visualization of New York City Taxi Service Data</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    
+    <link rel="stylesheet" href="static/css/styles.css" />
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+      
+   
+    <style type="cartocss/html" id="torque">
+    
+      button{
+
+        float: center;
+        font-size: 12px;
+        border-radius: 0;
+        margin-top:20;
+    
+      }
+        Map {
+        -torque-frame-count:1;
+        -torque-animation-duration:10;
+        -torque-time-attribute:"date";
+        -torque-aggregation-function:"count(cartodb_id)";
+        -torque-resolution:2;
+        -torque-data-aggregation:linear;
+        }
+
+        
+        
+    </style>
+    <script>
+   
+   function appendFrame(frame)
+   {
+     
+      
+      
+      if(frame=="1")
+              { 
+               /*var iframe= document.createElement('iframe');*/
+              
+                window.location.href="tip";
+          }
+      else if(frame=="2")
+                {
+                  window.location.href="payment";
+                }
+      else if(frame=="3")                 
+                 {
+                    window.location.href="passenger";
+                 }          
+     }
+
+   </script> 
+    
+        
+    <style type="cartocss/html" id="choropleth-fare">
+      
+         #ccds_all_data{
+          polygon-fill: #FFFFB2;
+          polygon-opacity: 0.8;
+          line-color: #FFF;
+          line-width: 0.5;
+          line-opacity: 0.75;
+        }
+        #ccds_all_data [ tip > 5] {
+           polygon-fill: #990000;
+        }
+        #ccds_all_data [ tip <= 500] {
+           polygon-fill: #d7301f;
+        }
+        #ccds_all_data [ tip <= 400] {
+           polygon-fill: #ef6548;
+        }
+        #ccds_all_data [ tip <= 300] {
+           polygon-fill: #fc8d59;
+        }
+        #ccds_all_data [ tip <= 200] {
+           polygon-fill: #fdbb84;
+        }
+        #ccds_all_data [ tip <= 100] {
+           polygon-fill: #fdd49e;
+        }
+        #ccds_all_data [ tip <= 50] {
+           polygon-fill: #fef0d9;
+        }
+      
+    </style>
+    
+    <style type="cartocss/html" id="choropleth-density">
+   
+
+        #ccds_all_data{
+          polygon-fill: #FFFFB2;
+          polygon-opacity: 0.8;
+          line-color: #FFF;
+          line-width: 0.5;
+          line-opacity: 0.75;
+        }
+        #ccds_all_data [ pop_density <= 135681.680060068] {
+           polygon-fill: #990000;
+        }
+        #ccds_all_data [ pop_density <= 65000] {
+           polygon-fill: #d7301f;
+        }
+        #ccds_all_data [ pop_density <= 55000] {
+           polygon-fill: #ef6548;
+        }
+        #ccds_all_data [ pop_density <= 45000] {
+           polygon-fill: #fc8d59;
+        }
+        #ccds_all_data [ pop_density <= 35000] {
+           polygon-fill: #fdbb84;
+        }
+        #ccds_all_data [ pop_density <= 25000] {
+           polygon-fill: #fdd49e;
+        }
+        #ccds_all_data [ pop_density <= 15000] {
+           polygon-fill: #fef0d9;
+        }
+    </style>  
+   <style type="cartocss/html" id="choropleth-bubble">
+   
+
+       @bronx: #98abc5;
+       @brooklyn: #d0743c;
+       @manhattan: #ff8c00;
+       @queens: #a05d56;
+       @staten: #8a89a6;
+       
+       #ccds_all_data{
+         marker-fill-opacity: 0.8;
+         marker-line-color: #FFF;
+         marker-line-width: 0.5;
+         marker-line-opacity: 0.75;
+         marker-placement: point;
+         marker-multi-policy: largest;
+         marker-type: ellipse;
+         marker-allow-overlap: true;
+         marker-clip: false;
+         marker-width: [symbol_size];
+       }
+       
+       #ccds_all_data[borough="Bronx"]{
+         marker-fill: @bronx;
+       }
+       
+       #ccds_all_data[borough="Brooklyn"]{
+         marker-fill: @brooklyn;
+       }
+       
+       #ccds_all_data[borough="Manhattan"]{
+         marker-fill: @manhattan;
+       }
+       
+       #ccds_all_data[borough="Queens"]{
+         marker-fill: @queens;
+       }
+        </style>
+      
+        <style type="cartocss/html" id="choropleth-tripcount">
+      /** choropleth visualization */
+
+        #ccds_all_data{
+          polygon-fill: #FFFFB2;
+          polygon-opacity: 0.8;
+          line-color: #FFF;
+          line-width: 0.5;
+          line-opacity: 0.75;
+        }
+        #ccds_all_data [ pov_rate <= 100] {
+           polygon-fill: #990000;
+        }
+        #ccds_all_data [ pov_rate <= 30] {
+           polygon-fill: #d7301f;
+        }
+        #ccds_all_data [ pov_rate <= 25] {
+           polygon-fill: #ef6548;
+        }
+        #ccds_all_data [ pov_rate <= 20] {
+           polygon-fill: #fc8d59;
+        }
+        #ccds_all_data [ pov_rate <= 15] {
+           polygon-fill: #fdbb84;
+        }
+        #ccds_all_data [ pov_rate <= 10] {
+           polygon-fill: #fdd49e;
+        }
+        #ccds_all_data [ pov_rate <= 8] {
+           polygon-fill: #fef0d9;
+        }
+      </style>
+      <style type="cartocss/html" id="choropleth-unemployment">
+          /** choropleth visualization */
+
+        #ccds_all_data{
+          polygon-fill: #FFFFB2;
+          polygon-opacity: 0.8;
+          line-color: #FFF;
+          line-width: 0.5;
+          line-opacity: 0.75;
+        }
+        #ccds_all_data [ unemp_rate <= 17.1] {
+           polygon-fill: #990000;
+        }
+        #ccds_all_data [ unemp_rate <= 15] {
+           polygon-fill: #d7301f;
+        }
+        #ccds_all_data [ unemp_rate <= 13] {
+           polygon-fill: #ef6548;
+        }
+        #ccds_all_data [ unemp_rate <= 11] {
+           polygon-fill: #fc8d59;
+        }
+        #ccds_all_data [ unemp_rate <= 9] {
+           polygon-fill: #fdbb84;
+        }
+        #ccds_all_data [ unemp_rate <= 7] {
+           polygon-fill: #fdd49e;
+        }
+        #ccds_all_data [ unemp_rate <= 6.3] {
+           polygon-fill: #fef0d9;
+        }
+      
+      </style>
+  </head>
+  <body>
+      
+    <!-- load the necessary scripts -->
+    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="static/js/leaflet.label.js" type="text/javascript"></script>
+    <script src="static/js/main.js" type="text/javascript"></script>
+    <script src="static/js/ccds.js" type="text/javascript"></script>
+    <script src="static/js/boroughs_tip.js" type="text/javascript"></script>
+    <script src="static/js/bronx_tip.js" type="text/javascript"></script>
+    <script src="static/js/brooklyn_tip.js" type="text/javascript"></script>
+    <script src="static/js/manhattan_tip.js" type="text/javascript"></script>
+    <script src="static/js/queens_tip.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- scripts for the legends -->
+    <script type='html' id="fare_legend" class="legend_template">
+
+        <div class='cartodb-legend density'>  
+        <ul>
+          <li class="min" style="color: #ffffff">
+         Crashes per Square Mile (2013-2015)
+          </li>
+
+          <li class="graph leg" style="border-radius: 0; border:none">
+          <div class="colors">
+            <div class="quartile" style="background-color:#fef0d9; width: 20px"></div>
+            <div class="quartile" style="background-color:#fdd49e; width: 20px"></div>
+            <div class="quartile" style="background-color:#fdbb84; width: 20px"></div>
+            <div class="quartile" style="background-color:#fc8d59; width: 20px"></div>
+            <div class="quartile" style="background-color:#ef6548; width: 20px"></div>
+            <div class="quartile" style="background-color:#d7301f; width: 20px"></div>
+            <div class="quartile" style="background-color:#990000; width: 20px"></div>
+          </div>
+            <div class="colors" style="font-weight:normal; text-align: center">
+            <div class="quartile" style="padding-top: 5px; color: #ffffff"> < 50 </div>
+            <div class="quartile" style="padding-top: 5px; color: #ffffff">50 - 100</div>
+            <div class="quartile" style="padding-top: 5px; color: #ffffff">100 - 200</div>
+            <div class="quartile" style="padding-top: 5px; color: #ffffff">200 - 300</div>
+            <div class="quartile" style="padding-top: 5px; color: #ffffff">300 - 400</div>
+            <div class="quartile" style="padding-top: 5px; color: #ffffff">400 - 500</div>
+            <div class="quartile" style="padding-top: 5px; color: #ffffff"> > 500</div>
+          </div>
+          </li>
+        </ul>
+        </div>
+    </script>
+      <label style="color:darkblue;font-size: 12px; font-size: 16px; padding: 1px 3px;">Select the Heat Map :</label>
+     <select id="heatmap" onchange="appendFrame(this.value)">
+          <option style="color:darkblue" value="default" selected>Default</option>
+          <option value="1">Tip amount</option>
+          <option value="2">Payment Type</option>
+          <option value="3">Passenger Count</option>
+    </select>
+    <!--button  id="toggle" > Heat Map </button -->
+  <style>
+
+  button {
+    background-color: darkblue;
+    border: none;
+    color: white;
+    padding: 2px 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 2px 1px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: black;
+}
+</style>
+  
+    <button  onclick="window.location.href='parallel' "> Parallel Graph </button>
+  
+    <button  onclick="window.location.href='charts' "> Charts </button> 
+    <button style="display: inline-block;" onclick="window.location.href='advance' "> Advanced Visualization </button>
+ 
+   
+   
+    <div id="titlebar-two">
+    <h2 class="title-one">Visualization of NYC Taxi Service Data</h2>
+    </div>
+    
+    <!-- start the HTML -->
+    <div id="map">
+    <div id="frame" style="margin:50px 0 0 0"> </div> 
+    </div>
+    <div id="dashboard">
+
+        <div id="dashboard-title-container">
+            <div id="dashboard-title">TAXI DATA IN NYC <br> CITY COUNCIL DISTRICTS</div>
+        </div>
+        <div id="selector_container">
+            <div id="selector_menu">
+                <form>
+                    <div style="display: inline-block;">
+                        <label for="layer_selector" style = "padding-bottom: 5px;">Select Feature</label>
+                        <select id="layer_selector" class="selector" style="margin-right: 10px;">
+                            <option value="distance_travelled" data="torque" data-type="cartocss">Distance</option>
+                            <option value="fare" data="choropleth-fare" data-type="cartocss">Total Fare</option>
+                            <option value="passengercount" data="choropleth-density" data-type="cartocss">Passenger Count</option>
+                            <option value="dispute" data="choropleth-bubble" data-type="cartocss">Dispute</option>
+                            <option value="tripcount" data="choropleth-tripcount" data-type="cartocss">Trip Count</option>
+                        </select>
+                    </div>
+                    <div style="display: inline-block;">
+                    <label for="zoom_selector" style = "padding-bottom: 5px;">Select a Borough</label>
+                    <select id="zoom_selector" class="selector">
+                        <option value="reset">NYC</option>
+                        <option value="bronx">Bronx</option>
+                        <option value="brooklyn">Brooklyn</option>
+                        <option value="manhattan">Manhattan</option>
+                        <option value="queens">Queens</option>
+                    </select>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        <div id="d3-elements">
+        </div>
+
+   
+  </body>
+</html>

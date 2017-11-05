@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<style>
+
+div.tab {
+    overflow: hidden;
+    border: 2px solid #cccccc;
+    background-color: 	#F0F8FF;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 12px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+	fill: blue;
+}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+ 
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+ 
+.loading {
+    font-family: sans-serif;
+    font-size: 15px;
+}
+ 
+.circle {
+    fill: #222;
+}
+
+.cell text {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.frame {
+  fill: none;
+  stroke: #aaa;
+}
+.button {
+  border-radius: 4px;
+  background-color: #6495ED;
+  border: none;
+  color: #000000;
+  text-align: center;
+  font-size: 14px;
+  font-family: sans-serif;
+  padding: 10px;
+  width: 600px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+circle.hidden {
+  fill: #ccc !important;
+}
+
+.extent {
+  fill: #000;
+  fill-opacity: .125;
+  stroke: #fff;
+}
+body {
+   // background-color: #F0D9BA;
+}
+
+</style>
+    <meta charset="utf-8">
+    <title>Visualization of NYC cab Data </title>
+    <h4><a href="/">Back</h4> <h3 align="center"><a href="#">NYC cab data Analysis</a></h3>
+	<!--body style="background-color:		#8FBC8F;" -->
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	<script type="text/javascript" src="static/scatterplot.js"></script>
+	<script type="text/javascript" src="static/lineplot.js"></script>
+	<script type="text/javascript" src="static/barchart.js"></script>
+    <script type="text/javascript" src="static/scatterplot_matrix.js"></script>
+
+
+    <div class="tab" align="center">
+
+
+	  <br>
+	  <p style="text-indent: 3em;"></p>
+	
+      <input type="button" class="btn btn-success" value = "PCA"  onclick="scatter_plot('static/data/pca_strat.csv')">
+      <input type="button" class="btn btn-success" value = "MDS Correlation" onclick="scatter_plot('static/data/mds_strat_correlation.csv')">
+      <input type="button" class="btn btn-success" value = "MDS Euclidean" onclick="scatter_plot('static/data/mds_strat_euclidean.csv')">
+      <input type="button" class="btn btn-success" value = "Scree Plot" onclick="line_plot('static/data/dengue_strat_screeplot.csv')">
+      <input type="button" class="btn btn-success" value = "Scatterplot Matrix"  onclick="scatterplot_matrix('static/data/scatterplot_matrix_stratified.csv')">
+	 
+    <input type="button" class="btn btn-success" value = "Elbow Plot" onclick="elbow_plot('static/data/elbow.csv')">
+    <input type="button" class="btn btn-success" value = "Top 3 PCA loadings attributes"  onclick="plot_barchart('static/data/dengue_loading_square.csv')">
+    </div>
+	
+    <div id  = "graph_type" align="center">
+    <button class="button" id = "graph_value"> Click buttons above to choose various visualizations</button>
+    </div>
+    
+    <div id  = "scatter_plot" align="center"></div>
+
+    <script type="text/javascript">
+
+    var w = 940;
+    var h = 370;
+    var pad = 20;
+    var left_pad = 100;
+  
+
+    
+    var xScale = d3.scale.linear().range([left_pad, w-pad]);
+    var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+    
+    var yScale = d3.scale.linear().range([pad, h-pad*2]);
+    var yAxis = d3.svg.axis().scale(yScale).orient("left");
+        
+
+    var svg = d3.select("#scatter_plot")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+				
+				
+
+</script>
+</head>
+
+</html>

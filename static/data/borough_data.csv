@@ -1,0 +1,5 @@
+Borough,Tip_amount,Trip_distance,Passenger_count,Total_amount,Trip_count,Number_Dispute,time,average_speed
+Brooklyn,1.260625,4.544375,1.406875,20.694375,13893,75,33.03,15.56
+Bronx,0.661428571,3.895714286,1.357142857,18.02,2291,33,25.09,17.94
+Manhattan,1.43,4.2375,1.24,17.37625,13644,69,20.3,15.94
+Queens,1.996923077,3.82,1.400769231,24.2,26842,73,24.71,16.21

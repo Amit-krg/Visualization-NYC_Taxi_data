@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<style>
+/*body{
+	//background-color: black;
+
+}*/
+/*text {
+  fill: #FFD204;
+}
+*/
+.rectangle {
+	fill: lightblue;
+}
+.rectangle:hover {
+	fill: orange;
+}
+.axis {
+  font: 10px sans-serif;
+ 
+}
+/*stroke: #FFD204;*/
+.axis path,
+.axis line {
+
+    shape-rendering: crispEdges;
+} 
+
+ #refresh-btn {
+        float: right;
+        font-size: 12px;
+        border-radius: 0;
+    }
+</style>
+</head>
+<body>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="static/js/bar_chart.js" type="text/javascript"></script>
+<script src="static/js/donut.js" type="text/javascript"></script>
+
+<table style="width:100%">
+<tr>
+<td>
+<div align="center">
+    <button  style="color: white;     background-color: darkblue;"  onclick="window.location.href='/'">Maps </button>
+    <button style="color: white;    background-color: darkblue; "  onclick="window.location.href='parallel'">Parallel Graph </button>
+    <button style="color: white;     background-color: darkblue; " onclick="window.location.href='advance'">Advance </button>
+	</div>
+</td>	
+</tr>
+    <tr >
+    	<td style="width:50%">
+    		<div id="drop" align=left></div> 
+    		<div id="barchart"></div>
+    	</td>
+    	<td >
+    		<button type="button" id="refresh-btn"></button>
+    		<div id="donut-charts"></div>
+   		 </td>	
+
+    </tr>
+    
+</table>
+<script>
+	window.onload=barChart();
+</script>
+</body>

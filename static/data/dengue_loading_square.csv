@@ -1,0 +1,6 @@
+,PCA_attributes,Loading_Square
+0,Passenger_count,0.999999267294
+1,Trip_distance,0.999866027186
+3,Tip_amount,0.972629504341
+2,Fare_amount,0.566383801588
+4,Total_amount,0.461121399591
